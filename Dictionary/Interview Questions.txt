@@ -1,0 +1,254 @@
+Q1. What is a dictionary in Python?
+👉 A dictionary is a collection of key-value pairs that is mutable, unordered (till Python 3.6), and indexed.
+
+my_dict = {"name": "Gitesh", "age": 22}
+print(my_dict["name"])  # Output: Gitesh
+
+
+Q2. How is a dictionary different from a list or set?
+
+List → Ordered, indexed by position, allows duplicates.
+
+Set → Unordered, stores unique elements only.
+
+Dictionary → Stores key-value pairs, keys must be unique.
+
+Q3. How do you create an empty dictionary?
+
+d1 = {}        # Empty dict
+d2 = dict()    # Using dict() constructor
+
+
+Q4. Can dictionary keys be mutable? Why or why not?
+👉 No. Keys must be immutable (string, int, tuple). If you try to use a list/dict as a key, it raises TypeError.
+
+Q5. What happens if you insert two items with the same key?
+👉 The latest value overwrites the previous one.
+
+d = {"a": 1, "a": 2}
+print(d)   # {'a': 2}
+
+
+Q6. How do you access values in a dictionary?
+
+d = {"name": "Gitesh", "age": 22}
+print(d["name"])      # Direct access
+print(d.get("age"))   # Safe access
+print(d.get("xyz"))   # None (avoids KeyError)
+
+🔹 2. Operations
+
+Q7. How do you add a new key-value pair?
+
+d = {"name": "Gitesh"}
+d["age"] = 22
+
+
+Q8. How do you update a value?
+
+d["age"] = 23
+
+
+Q9. How do you remove elements?
+
+d = {"a": 1, "b": 2, "c": 3}
+del d["b"]        # Removes key b
+d.pop("c")        # Removes key c
+d.popitem()       # Removes last inserted item
+
+
+Q10. Difference between del, pop(), and popitem()?
+
+del d["key"] → removes specific key, no return.
+
+pop("key") → removes and returns value.
+
+popitem() → removes and returns the last inserted pair.
+
+Q11. How to check if a key exists?
+
+if "name" in d:
+    print("Key exists")
+
+
+Q12. Iterating over dictionary:
+
+for k in d.keys():
+    print(k)
+
+for v in d.values():
+    print(v)
+
+for k, v in d.items():
+    print(k, v)
+
+🔹 3. Methods
+
+Q13. Difference between get() and []?
+
+[] → raises KeyError if not found.
+
+get() → returns None (or default) if not found.
+
+Q14. What does setdefault() do?
+
+d = {"a": 1}
+d.setdefault("b", 2)   # Adds b:2 if not present
+print(d)   # {'a': 1, 'b': 2}
+
+
+Q15. How does update() work?
+
+d1 = {"a": 1}
+d2 = {"b": 2}
+d1.update(d2)
+print(d1)   # {'a': 1, 'b': 2}
+
+
+Q16. Use of fromkeys():
+
+d = dict.fromkeys(["a", "b", "c"], 0)
+print(d)   # {'a': 0, 'b': 0, 'c': 0}
+
+
+Q17. What does clear() do?
+👉 Removes all items from dictionary.
+
+🔹 4. Advanced
+
+Q18. How are dictionaries implemented internally?
+👉 Using a hash table. Keys are hashed to unique memory addresses for O(1) lookup.
+
+Q19. What is hashing in dictionaries?
+👉 A hash function converts a key into an integer index. Immutable keys are hashable.
+
+Q20. Why are dictionary lookups fast?
+👉 Because keys are hashed directly into memory addresses → average O(1) complexity.
+
+Q21. Why can’t lists be keys but tuples can?
+👉 Lists are mutable (hash changes). Tuples are immutable (hash constant).
+
+Q22. Can different keys have same value?
+👉 Yes. Values don’t need to be unique.
+
+d = {"a": 1, "b": 1}
+
+
+Q23. Time complexity:
+
+Lookup → O(1)
+
+Insertion → O(1)
+
+Deletion → O(1)
+
+Q24. Difference between defaultdict and normal dict?
+👉 defaultdict (from collections) provides a default value if key is missing.
+
+from collections import defaultdict
+d = defaultdict(int)
+print(d["x"])   # 0 instead of KeyError
+
+
+Q25. What is OrderedDict?
+👉 In Python <3.7, dicts didn’t maintain order. OrderedDict preserved it. From 3.7+, normal dict maintains insertion order.
+
+Q26. How does Python 3.7+ maintain order?
+👉 By using a compact array + hash table internally.
+
+🔹 5. Coding Questions
+
+Q27. Count frequency of words in string:
+
+s = "hello world hello"
+freq = {}
+for word in s.split():
+    freq[word] = freq.get(word, 0) + 1
+print(freq)  # {'hello': 2, 'world': 1}
+
+
+Q28. Count frequency of numbers:
+
+nums = [1,2,1,3,2,1]
+count = {}
+for n in nums:
+    count[n] = count.get(n, 0) + 1
+
+
+Q29. Merge two dicts & sum values:
+
+d1 = {"a": 1, "b": 2}
+d2 = {"b": 3, "c": 4}
+merged = {k: d1.get(k, 0) + d2.get(k, 0) for k in set(d1) | set(d2)}
+print(merged)  # {'a': 1, 'b': 5, 'c': 4}
+
+
+Q30. Invert a dictionary:
+
+d = {"a": 1, "b": 2}
+inv = {v: k for k, v in d.items()}
+
+
+Q31. Sort by keys & values:
+
+d = {"c": 3, "a": 1, "b": 2}
+print(dict(sorted(d.items())))                   # by keys
+print(dict(sorted(d.items(), key=lambda x: x[1]))) # by values
+
+
+Q32. Find key with max value:
+
+d = {"a": 10, "b": 50, "c": 20}
+print(max(d, key=d.get))   # 'b'
+
+
+Q33. Dictionary comprehension:
+
+squares = {x: x*x for x in range(1, 6)}
+print(squares)
+
+
+Q34. Remove None values:
+
+d = {"a": 1, "b": None, "c": 3}
+d = {k: v for k, v in d.items() if v is not None}
+
+🔹 6. Tricky
+
+Q35. Can a dictionary contain another dictionary?
+👉 Yes, called a nested dictionary.
+
+d = {"emp1": {"name": "Gitesh", "age": 22}}
+
+
+Q36. What if you use a list as a key?
+👉 TypeError: unhashable type: 'list'.
+
+Q37. Output of:
+
+a = {1: "one", True: "true"}
+print(a)
+
+
+👉 {1: 'true'} because 1 and True are treated as the same key (hash(1) == hash(True)).
+
+Q38. Shallow vs Deep copy:
+
+Shallow copy → copies references (nested objects still linked).
+
+Deep copy → makes a new copy of everything.
+
+Q39. Compare two dicts:
+
+d1 = {"a": 1, "b": 2}
+d2 = {"b": 2, "a": 1}
+print(d1 == d2)  # True
+
+
+Q40. Merge two dictionaries (Python 3.5 vs 3.9+):
+
+# Python 3.5+
+d1.update(d2)
+
+# Python 3.9+
+merged = d1 | d2

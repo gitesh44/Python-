@@ -1,0 +1,54 @@
+---------------------------------------------------SET----------------------------------------------------------
+
+What is a Set in Python?
+👉 A set is an unordered, mutable collection of unique elements in Python.
+
+Unordered → elements have no fixed position.
+
+Mutable → you can add/remove elements.
+
+Unique → no duplicates are allowed.
+
+-------------------------------------------------------------------------------------------------------------------
+# Creating a set
+s1 = {1, 2, 3, 4}
+print(s1)   # {1, 2, 3, 4}
+
+# Using set() constructor
+s2 = set([1, 2, 2, 3])
+print(s2)   # {1, 2, 3}
+
+# Empty set (IMPORTANT)
+s3 = set()   # {} creates an empty dictionary, not a set
+-------------------------------------------------------------------------------------------------------------------
+🔹 Key Characteristics
+
+Stores unique elements (duplicates automatically removed).
+Elements must be immutable (numbers, strings, tuples).
+Unordered → no indexing, no slicing.
+Supports set operations (union, intersection, difference).
+------------------------------------------------------------------------------------------------------------------
+🔹 Common Set Methods
+s = {1, 2, 3}
+
+# Add elements
+s.add(4)        # {1,2,3,4}
+s.update([5,6]) # {1,2,3,4,5,6}
+======================================
+# Remove elements
+s.remove(2)     # Removes 2 (error if not present)
+s.discard(10)   # Removes 10 if exists, else no error
+s.pop()         # Removes random element
+s.clear()       # Removes all elements
+======================================
+# Mathematical operations
+a = {1, 2, 3}
+b = {3, 4, 5}
+print(a | b)   # Union → {1,2,3,4,5}
+print(a & b)   # Intersection → {3}
+print(a - b)   # Difference → {1,2}
+print(a ^ b)   # Symmetric difference → {1,2,4,5}
+
+-------------------------------------------------------------------------------------------------------------------
+✅ In short:
+A Set in Python is a mutable, unordered collection of unique, hashable elements.
