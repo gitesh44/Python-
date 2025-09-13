@@ -1,0 +1,6 @@
+
+From now on, whenever you make changes, you just need to run:
+
+git add .
+git commit -m "Updated files"
+git push origin main
